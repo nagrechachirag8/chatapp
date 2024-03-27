@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import { auth } from "./firebase/firebase-config";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import Chat from "./components/Chat";
+import ChatRoom from "./components/ChatRoom";
 
 const style = {
   appContainer: `max-w-[728px] mx-auto text-center`,
@@ -20,7 +20,8 @@ function App() {
     <div className={style.appContainer}>
       <section className={style.sectionContainer}>
         <Navbar />
-        {user ? <Chat /> : null}
+        {/* {user ? <Chat /> : null} */}
+        { user ? <ChatRoom /> : null }
       </section>
     </div>
   );
