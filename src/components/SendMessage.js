@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebase/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 const style = {
     form: `h-14 w-full max-w-[728px]  flex text-xl absolute bottom-0`,
@@ -10,6 +11,9 @@ const style = {
 
 function SendMessage() {
     const [input, setInput] = useState('');
+    const roomname = useSelector((state) => {
+        return state.roomname.roomName
+    })
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -24,7 +28,8 @@ function SendMessage() {
             text: input,
             name: displayName,
             uid,
-            timestamp: serverTimestamp()
+            timestamp: serverTimestamp(),
+            room: roomname
         })
 
         setInput('');
